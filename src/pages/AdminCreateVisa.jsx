@@ -141,7 +141,7 @@ export default function AdminCreateVisa() {
       <div className="admin-header">
         <h1>Adaugă Viză Nouă</h1>
         <div className="admin-nav-links">
-          <Link to="/admin" className="admin-nav-link">Dashboard</Link>
+          
           <Link to="/admin/visas" className="admin-nav-link">Lista Vize</Link>
         </div>
       </div>

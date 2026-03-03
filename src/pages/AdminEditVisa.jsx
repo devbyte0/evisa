@@ -186,7 +186,7 @@ export default function AdminEditVisa() {
       <div className="admin-header">
         <h1>Editează Viză</h1>
         <div className="admin-nav-links">
-          <Link to="/admin" className="admin-nav-link">Dashboard</Link>
+          
           <Link to="/admin/visas" className="admin-nav-link">Lista Vize</Link>
         </div>
       </div>
