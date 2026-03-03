@@ -74,7 +74,7 @@ export default function AdminVisas() {
       <div className="admin-header">
         <h1>Lista Vize</h1>
         <div className="admin-nav-links">
-          <Link to="/admin" className="admin-nav-link">Dashboard</Link>
+          
           <Link to="/" className="admin-nav-link">Înapoi la site</Link>
           <Link to="/admin/visas/create" className="admin-btn-primary">+ Adaugă Viză Nouă</Link>
         </div>
