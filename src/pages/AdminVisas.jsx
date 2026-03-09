@@ -102,45 +102,47 @@ export default function AdminVisas() {
         </select>
       </div>
 
-      <table className="admin-table">
-        <thead>
-          <tr>
-            <th>Număr Viză</th>
-            <th>Nume</th>
-            <th>Prenume</th>
-            <th>Pașaport</th>
-            <th>Naționalitate</th>
-            <th>Tip Viză</th>
-            <th>Status</th>
-            <th>Emisă la</th>
-            <th>Expiră la</th>
-            <th>Acțiuni</th>
-          </tr>
-        </thead>
-        <tbody>
-          {filteredVisas.map(visa => (
-            <tr key={visa._id}>
-              <td><strong>{visa.visaNumber}</strong></td>
-              <td>{visa.lastName}</td>
-              <td>{visa.firstName}</td>
-              <td>{visa.passportNumber}</td>
-              <td>{visa.nationality}</td>
-              <td>{visa.visaType}</td>
-              <td>
-                <span className={`status-badge ${visa.status.toLowerCase()}`}>
-                  {visa.status}
-                </span>
-              </td>
-              <td>{formatDateDMY(visa.issueDate)}</td>
-              <td>{formatDateDMY(visa.expiryDate)}</td>
-              <td>
-                <Link to={`/admin/visas/edit/${visa._id}`} className="action-btn edit-btn">Editează</Link>
-                <button onClick={() => handleDelete(visa._id, visa.visaNumber)} className="action-btn delete-btn">Șterge</button>
-              </td>
+      <div className="admin-table-wrapper">
+        <table className="admin-table">
+          <thead>
+            <tr>
+              <th>Număr Viză</th>
+              <th>Nume</th>
+              <th>Prenume</th>
+              <th>Pașaport</th>
+              <th>Naționalitate</th>
+              <th>Tip Viză</th>
+              <th>Status</th>
+              <th>Emisă la</th>
+              <th>Expiră la</th>
+              <th>Acțiuni</th>
             </tr>
-          ))}
-        </tbody>
-      </table>
+          </thead>
+          <tbody>
+            {filteredVisas.map(visa => (
+              <tr key={visa._id}>
+                <td><strong>{visa.visaNumber}</strong></td>
+                <td>{visa.lastName}</td>
+                <td>{visa.firstName}</td>
+                <td>{visa.passportNumber}</td>
+                <td>{visa.nationality}</td>
+                <td>{visa.visaType}</td>
+                <td>
+                  <span className={`status-badge ${visa.status.toLowerCase()}`}>
+                    {visa.status}
+                  </span>
+                </td>
+                <td>{formatDateDMY(visa.issueDate)}</td>
+                <td>{formatDateDMY(visa.expiryDate)}</td>
+                <td>
+                  <Link to={`/admin/visas/edit/${visa._id}`} className="action-btn edit-btn">Editează</Link>
+                  <button onClick={() => handleDelete(visa._id, visa.visaNumber)} className="action-btn delete-btn">Șterge</button>
+                </td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
 
       {filteredVisas.length === 0 && (
         <div className="no-results">Nu s-au găsit vize</div>
