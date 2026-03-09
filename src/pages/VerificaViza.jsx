@@ -3,12 +3,44 @@
 import { useState, useEffect } from 'react';
 import apiClient from '../apiClient';
 
+const CAPTCHA_IMAGES = [
+  '/Capture.png',
+  '/Cap-1.png',
+  '/Cap-2.png',
+  '/Cap-3.png',
+  '/Cap-4.png',
+  '/Cap-5.png',
+  '/Cap-6.png',
+  '/Cap-7.png',
+  '/Cap-8.png',
+  '/Cap-9.png',
+  '/Cap-10.png',
+  '/Cap-11.png',
+  '/Cap-12.png'
+];
+
+const CAPTCHA_VALUES = {
+  '/Capture.png': '63RNR7',
+  '/Cap-1.png': '2R9BT6',
+  '/Cap-2.png': 'H974TT',
+  '/Cap-3.png': 'S2STNT',
+  '/Cap-4.png': 'QFJE33',
+  '/Cap-5.png': '7E4Z3J',
+  '/Cap-6.png': '74DL4G',
+  '/Cap-7.png': 'N44UG9',
+  '/Cap-8.png': 'QWLQP6',
+  '/Cap-9.png': 'R68KPC',
+  '/Cap-10.png': 'GBHVDH',
+  '/Cap-11.png': 'ZVJKEJ',
+  '/Cap-12.png': 'PNG2GT'
+};
+
 
 export default function VerificaViza() {
   const [visaNumber, setVisaNumber] = useState('');
   const [captchaInput, setCaptchaInput] = useState('');
   const [captchaValue, setCaptchaValue] = useState('63RNR7');
-  const [captchaImage, setCaptchaImage] = useState('/Capture.png');
+  const [captchaImage, setCaptchaImage] = useState(CAPTCHA_IMAGES[0]);
   const [result, setResult] = useState(null);
   const [error, setError] = useState('');
   const [showResult, setShowResult] = useState(false);
@@ -43,6 +75,12 @@ export default function VerificaViza() {
 
 
   useEffect(() => {
+    // pick a random captcha image on first load and set its expected value
+    const randomIndex = Math.floor(Math.random() * CAPTCHA_IMAGES.length);
+    const selectedImage = CAPTCHA_IMAGES[randomIndex];
+    setCaptchaImage(selectedImage);
+    setCaptchaValue(CAPTCHA_VALUES[selectedImage] || '');
+
     // Get culture from URL or cookie
     const urlParams = new URLSearchParams(window.location.search);
     const cultureFromUrl = urlParams.get('c');
@@ -66,6 +104,12 @@ export default function VerificaViza() {
 
     if (!captchaInput.trim()) {
       setError('Introduceți codul de verificare');
+      return;
+    }
+
+    // verify captcha locally against the image's expected value
+    if (captchaInput.trim().toUpperCase() !== captchaValue.toUpperCase()) {
+      setError('Cod de verificare incorect');
       return;
     }
 
@@ -95,9 +139,11 @@ export default function VerificaViza() {
   };
 
   const handleReloadCaptcha = () => {
-    const newCaptcha = Math.random().toString(36).substring(2, 8).toUpperCase();
-    setCaptchaValue(newCaptcha);
-    setCaptchaImage('/images/Capture.png?reload=' + Date.now());
+    const randomIndex = Math.floor(Math.random() * CAPTCHA_IMAGES.length);
+    const selectedImage = CAPTCHA_IMAGES[randomIndex];
+    setCaptchaImage(selectedImage);
+    setCaptchaValue(CAPTCHA_VALUES[selectedImage] || '');
+    setCaptchaInput('');
   };
 
   const handleNewSearch = () => {
@@ -109,7 +155,7 @@ export default function VerificaViza() {
   };
 
   return (
-    <div>
+    <div className="verifica-viza-page">
       Verifica viza
       <div id="header-wrapper">
         <div id="header-emblem">
