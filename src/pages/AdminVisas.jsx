@@ -75,8 +75,8 @@ export default function AdminVisas() {
         <h1>Lista Vize</h1>
         <div className="admin-nav-links">
           
-          <Link to="/" className="admin-nav-link">Înapoi la site</Link>
-          <Link to="/admin/visas/create" className="admin-btn-primary">+ Adaugă Viză Nouă</Link>
+          <Link to="/check-my-visa" className="admin-nav-link">Înapoi la site</Link>
+          <Link to="/visas/create" className="admin-btn-primary">+ Adaugă Viză Nouă</Link>
         </div>
       </div>
 
@@ -135,7 +135,7 @@ export default function AdminVisas() {
                 <td>{formatDateDMY(visa.issueDate)}</td>
                 <td>{formatDateDMY(visa.expiryDate)}</td>
                 <td>
-                  <Link to={`/admin/visas/edit/${visa._id}`} className="action-btn edit-btn">Editează</Link>
+                  <Link to={`/visas/edit/${visa._id}`} className="action-btn edit-btn">Editează</Link>
                   <button onClick={() => handleDelete(visa._id, visa.visaNumber)} className="action-btn delete-btn">Șterge</button>
                 </td>
               </tr>
