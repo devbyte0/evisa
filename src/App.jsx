@@ -11,13 +11,13 @@ function App() {
   return (
     <Routes>
       {/* Public route - Visa verification */}
-      <Route path="/" element={<VerificaViza />} />
+      <Route path="/check-my-visa" element={<VerificaViza />} />
       
       {/* Simple admin routes - no login required */}
       
-      <Route path="/admin/visas" element={<AdminVisas />} />
-      <Route path="/admin/visas/create" element={<AdminCreateVisa />} />
-      <Route path="/admin/visas/edit/:id" element={<AdminEditVisa />} />
+      <Route path="/visas" element={<AdminVisas />} />
+      <Route path="/visas/create" element={<AdminCreateVisa />} />
+      <Route path="/visas/edit/:id" element={<AdminEditVisa />} />
       
       {/* Catch all - redirect to home */}
       <Route path="*" element={<VerificaViza />} />
